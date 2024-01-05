@@ -1,8 +1,8 @@
-# Project Name Documentation
+# React Naming Standards
 
 ## Table of Contents
 
-- [Project Name Documentation](#project-name-documentation)
+- [React Naming Standards](#react-naming-standards)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Folder Structure](#folder-structure)
@@ -17,40 +17,68 @@
 
 ## Introduction
 
-Welcome to the documentation for our project! This document provides guidelines and best practices to help you understand the project structure, naming conventions, and coding standards.
+Welcome to the documentation for React Naming Standards and Best Practices! This document provides guidelines and best practices to help you understand the project structure, naming conventions, and coding standards.
 
 ## Folder Structure
 
-Our project follows a well-organized folder structure to maintain clarity and simplicity. Here's an overview:
+Our project should follow a well-organized folder structure to maintain clarity, consistency and simplicity. Here's an overview:
 
 ```plaintext
 project-root/
   ├── src/
   │   ├── components/
-  │   │   ├── MyComponent/
-  │   │   │   ├── MyComponent.js
-  │   │   │   ├── MyComponentStyles.css
-  │   │   │   └── ...
+  │   │   ├── Component1/
+  │   │   │   ├── Component1.js
+  │   │   │   └── Component1.test.js
+  │   │   └── Component2/
+  │   │       ├── Component2.js
+  │   │       └── Component2.test.js
+  │   ├── styles/
+  │   │   ├── global.css
+  │   │   ├── common.css
+  │   │   ├── Component1Styles.css
+  │   │   ├── Component2Styles.css
   │   ├── utils/
   │   │   ├── utilityFunction.js
   │   │   └── HelperFunction.js
   │   ├── services/
   │   │   └── ApiService.js
+  │   ├── assets/
+  │   │   ├── images/
+  │   │   │   └── image1.png
+  │   │   │   └── image2.png
+  │   │   ├── fonts/
+  │   │   │   └── font1.ttf
+  │   │   └── other/
+  │   │       └── otherAsset.ext
+  │   ├── App.js
+  │   ├── index.js
+  │   ├── index.css
+  │   └── setupTests.js
+  ├── public/
+  │   ├── index.html
+  │   ├── favicon.ico
   │   └── ...
   ├── data/
   │   └── data.json
-  ├── assets/
-  │   └── image.png
   ├── README.md
   ├── package.json
   └── ...
+
 ```
 
 ## Naming Conventions
 
 - **PascalCase**: Use PascalCase for component names. For example: `MyComponent`.
-- **CamelCase**: Use camelCase for utility or helper files and folder names.
+- **CamelCase**: Use camelCase for utility or helper files and folder names. For example: `commonUtils.js` or `commonFolder`
 - **Alphabetical Order**: Maintain alphabetical order for imports and file organization.
+- The following import priority should be followed: 
+
+```plaintext  
+  ├──Library imports
+  ├──Absolute imports from the project
+  ├──Relative imports
+``````
 
 ## Library Imports
 
