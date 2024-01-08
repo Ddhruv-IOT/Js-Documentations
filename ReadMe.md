@@ -6,13 +6,19 @@
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Folder Structure](#folder-structure)
+  - [Basic Rules](#basic-rules)
   - [Naming Conventions](#naming-conventions)
   - [Library Imports](#library-imports)
   - [Absolute Imports](#absolute-imports)
   - [Relative Imports](#relative-imports)
+  - [Alignment](#alignment)
+  - [Quotes](#quotes)
+  - [Spacing](#spacing)
   - [Examples](#examples)
     - [MyComponent.js](#mycomponentjs)
   - [ReactJS Development Rules](#reactjs-development-rules)
+  - [Mixins](#mixins)
+  - [Props](#props)
   - [Contributing](#contributing)
   - [License](#license)
 
@@ -68,10 +74,38 @@ project-root/
 
 ```
 
+## Basic Rules
+
+- Only include one React component per file. However, multiple Stateless or Pure Components are allowed per file. `eslint: react/no-multi-comp`.
+- Always use JSX syntax.
+- Do not use `React.createElement` unless you’re initializing the app from a file that is not JSX.
+
 ## Naming Conventions
 
-- **PascalCase**: Use PascalCase for component names. For example: `MyComponent`.
+- **PascalCase**: Use PascalCase for component names and Component file names. For example: `MyComponent`.
 - **CamelCase**: Use camelCase for utility or helper files and folder names. For example: `commonUtils.js` or `commonFolder`
+- **Extensions**: Use `.jsx` extension for React components. 
+- **Reference Naming**: Use camelCase for componenet instances. 
+  - *bad*
+    ```jsx
+    import reservationCard from './ReservationCard';
+    const ReservationItem = <ReservationCard />;
+    ```
+  - *good*
+    ```jsx
+    import ReservationCard from './ReservationCard';
+    const reservationItem = <ReservationCard />;
+    ```
+- **Component Naming**: Use the filename as the component name. For example, `ReservationCard.jsx` should have a reference name of `ReservationCard`. However, for root components of a directory, use `index.jsx` as the filename and use the directory name as the component name:
+  - *bad*
+    ```jsx
+    import Footer from './Footer/Footer';
+    import Footer from './Footer/index';
+    ```
+  - *good*
+    ```jsx
+    import Footer from './Footer';
+    ```
 - **Alphabetical Order**: Maintain alphabetical order for imports and file organization.
 - The following import priority should be followed: 
 
@@ -123,6 +157,103 @@ import jsonData from '../data/data.json';
 import image from '../assets/image.png';
 ```
 
+## Alignment
+
+- Follow these alignment styles for JSX syntax. 
+  
+  - *bad*
+    ```jsx
+    <Foo superLongParam="bar"
+         anotherSuperLongParam="baz" />
+    ```
+  - *good*
+    ```jsx
+    <Foo
+      superLongParam="bar"
+      anotherSuperLongParam="baz"
+    />
+    ```
+    *or, if props fit in one line*
+    ```jsx
+    <Foo bar="bar" />
+    ```
+    *children get indented normally*
+    ```jsx
+    <Foo
+      superLongParam="bar"
+      anotherSuperLongParam="baz"
+    >
+      <Quux />
+    </Foo>
+    ```
+    *good*
+    ```jsx
+    {showButton && (
+      <Button />
+    )}
+    {showButton && <Button />}
+    ```
+    *good*
+    ```jsx
+    {someReallyLongConditional
+      && anotherLongConditional
+      && (
+        <Foo
+          superLongParam="bar"
+          anotherSuperLongParam="baz"
+        />
+      )
+    }
+    ```
+    *good*
+    ```jsx
+    {someConditional ? (
+      <Foo />
+    ) : (
+      <Foo
+        superLongParam="bar"
+        anotherSuperLongParam="baz"
+      />
+    )}
+  
+## Quotes
+
+- Always use double quotes (`"`) for JSX attributes, but single quotes (`'`) for all other JS. `eslint: jsx-quotes`
+  - *bad*
+    ```jsx
+    <Foo bar='bar' />
+    <Foo style={{ left: "20px" }} />
+    ```
+  - *good*
+    ```jsx
+    <Foo bar="bar" />
+    <Foo style={{ left: '20px' }} />
+    ```
+
+## Spacing
+
+- Always include a single space in your self-closing tag. `eslint: no-multi-spaces, react/jsx-tag-spacing`
+  - *bad*
+    ```jsx
+    <Foo/>
+    <Foo                 />
+    <Foo
+     />
+    ```
+  - *good*
+    ```jsx
+    <Foo />
+    ```
+
+- Do not pad JSX curly braces with spaces. `eslint: react/jsx-curly-spacing`
+  - *bad*
+    ```jsx
+    <Foo bar={ baz } />
+    ```
+  - *good*
+    ```jsx
+    <Foo bar={baz} />
+    ```
 
 
 ## Examples
@@ -239,6 +370,108 @@ export default MyComponent;
     - Write test cases before implementing new features or fixing issues to ensure comprehensive test coverage.
     - **Example:**
       - Writing a test case for a component before implementing its functionality.
+
+
+
+
+## Mixins
+
+- Do not use mixins.
+  - Why? Mixins introduce implicit dependencies, cause name clashes, and cause snowballing complexity. Most use cases for mixins can be accomplished in better ways via components, higher-order components, or utility modules.
+
+
+
+
+## Props
+
+- Always use camelCase for prop names, or PascalCase if the prop value is a React component.
+  - *bad*
+    ```jsx
+    <Foo UserName="hello" phone_number={12345678} />
+    ```
+  - *good*
+    ```jsx
+    <Foo userName="hello" phoneNumber={12345678} Component={SomeComponent} />
+    ```
+
+- Omit the value of the prop when it is explicitly true. `eslint: react/jsx-boolean-value`
+  - *bad*
+    ```jsx
+    <Foo hidden={true} />
+    ```
+  - *good*
+    ```jsx
+    <Foo hidden />
+    ```
+
+  - *good*
+    ```jsx
+    <Foo hidden />
+    ```
+
+- Always include an `alt` prop on `<img>` tags. If the image is presentational, `alt` can be an empty string or the `<img>` must have `role="presentation"`. `eslint: jsx-a11y/alt-text`
+  - *bad*
+    ```jsx
+    <img src="hello.jpg" />
+    ```
+  - *good*
+    ```jsx
+    <img src="hello.jpg" alt="Me waving hello" />
+    ```
+    *good*
+    ```jsx
+    <img src="hello.jpg" alt="" />
+    ```
+    *good*
+    ```jsx
+    <img src="hello.jpg" role="presentation" />
+    ```
+
+- Do not use words like "image", "photo", or "picture" in `<img>` `alt` props. `eslint: jsx-a11y/img-redundant-alt`
+  - *bad*
+    ```jsx
+    <img src="hello.jpg" alt="Picture of me waving hello" />
+    ```
+  - *good*
+    ```jsx
+    <img src="hello.jpg" alt="Me waving hello" />
+    ```
+
+- Use only valid, non-abstract ARIA roles. `eslint: jsx-a11y/aria-role`
+  - *bad - not an ARIA role*
+    ```jsx
+    <div role="datepicker" />
+    ```
+  - *bad - abstract ARIA role*
+    ```jsx
+    <div role="range" />
+    ```
+  - *good*
+    ```jsx
+    <div role="button" />
+    ```
+
+- Do not use `accessKey` on elements. `eslint: jsx-a11y/no-access-key`
+  - *bad*
+    ```jsx
+    <div accessKey="h" />
+    ```
+
+  - *good*
+    ```jsx
+    <div />
+    ```
+
+- Avoid using an array index as the key prop, prefer a stable ID. `eslint: react/no-array-index-key`
+  - *bad*
+    ```jsx
+    {todos.map((todo, index) =>
+      <Todo
+        {...todo}
+        key={index}
+      />
+    )}
+   
 
 
 
