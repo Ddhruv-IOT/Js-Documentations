@@ -14,11 +14,11 @@
   - [Alignment](#alignment)
   - [Quotes](#quotes)
   - [Spacing](#spacing)
+  - [Props](#props)
   - [Examples](#examples)
     - [MyComponent.js](#mycomponentjs)
   - [ReactJS Development Rules](#reactjs-development-rules)
   - [Mixins](#mixins)
-  - [Props](#props)
   - [Contributing](#contributing)
   - [License](#license)
 
@@ -255,6 +255,88 @@ import image from '../assets/image.png';
     <Foo bar={baz} />
     ```
 
+## Props
+
+- Always use camelCase for prop names, or PascalCase if the prop value is a React component.
+  - *bad*
+    ```jsx
+    <Foo UserName="hello" phone_number={12345678} />
+    ```
+  - *good*
+    ```jsx
+    <Foo userName="hello" phoneNumber={12345678} Component={SomeComponent} />
+    ```
+
+- Omit the value of the prop when it is explicitly true.
+  - *bad*
+    ```jsx
+    <Foo hidden={true} />
+    ```
+  - *good*
+    ```jsx
+    <Foo hidden />
+    ```
+
+  - *good*
+    ```jsx
+    <Foo hidden />
+    ```
+
+- Always include an `alt` prop on `<img>` tags. If the image is presentational, `alt` can be an empty string or the `<img>` must have `role="presentation"`. 
+  
+  - *bad*
+    ```jsx
+    <img src="hello.jpg" />
+    ```
+  - *good*
+    ```jsx
+    <img src="hello.jpg" alt="Me waving hello" />
+    ```
+  - *good*
+    ```jsx
+    <img src="hello.jpg" alt="" />
+    ```
+  - *good*
+    ```jsx
+    <img src="hello.jpg" role="presentation" />
+    ```
+
+- Do not use words like "image", "photo", or "picture" in `<img>` `alt` props. 
+  
+  - *bad*
+    ```jsx
+    <img src="hello.jpg" alt="Picture of me waving hello" />
+    ```
+  - *good*
+    ```jsx
+    <img src="hello.jpg" alt="Me waving hello" />
+    ```
+
+- Use only valid, non-abstract ARIA roles.
+
+  - *bad - not an ARIA role*
+    ```jsx
+    <div role="datepicker" />
+    ```
+  - *bad - abstract ARIA role*
+    ```jsx
+    <div role="range" />
+    ```
+  - *good*
+    ```jsx
+    <div role="button" />
+    ```
+
+- Do not use `accessKey` on elements.
+  - *bad*
+    ```jsx
+    <div accessKey="h" />
+    ```
+
+  - *good*
+    ```jsx
+    <div />
+    ```
 
 ## Examples
 
@@ -381,97 +463,6 @@ export default MyComponent;
 
 
 
-
-## Props
-
-- Always use camelCase for prop names, or PascalCase if the prop value is a React component.
-  - *bad*
-    ```jsx
-    <Foo UserName="hello" phone_number={12345678} />
-    ```
-  - *good*
-    ```jsx
-    <Foo userName="hello" phoneNumber={12345678} Component={SomeComponent} />
-    ```
-
-- Omit the value of the prop when it is explicitly true. `eslint: react/jsx-boolean-value`
-  - *bad*
-    ```jsx
-    <Foo hidden={true} />
-    ```
-  - *good*
-    ```jsx
-    <Foo hidden />
-    ```
-
-  - *good*
-    ```jsx
-    <Foo hidden />
-    ```
-
-- Always include an `alt` prop on `<img>` tags. If the image is presentational, `alt` can be an empty string or the `<img>` must have `role="presentation"`. `eslint: jsx-a11y/alt-text`
-  - *bad*
-    ```jsx
-    <img src="hello.jpg" />
-    ```
-  - *good*
-    ```jsx
-    <img src="hello.jpg" alt="Me waving hello" />
-    ```
-    *good*
-    ```jsx
-    <img src="hello.jpg" alt="" />
-    ```
-    *good*
-    ```jsx
-    <img src="hello.jpg" role="presentation" />
-    ```
-
-- Do not use words like "image", "photo", or "picture" in `<img>` `alt` props. `eslint: jsx-a11y/img-redundant-alt`
-  - *bad*
-    ```jsx
-    <img src="hello.jpg" alt="Picture of me waving hello" />
-    ```
-  - *good*
-    ```jsx
-    <img src="hello.jpg" alt="Me waving hello" />
-    ```
-
-- Use only valid, non-abstract ARIA roles. `eslint: jsx-a11y/aria-role`
-  - *bad - not an ARIA role*
-    ```jsx
-    <div role="datepicker" />
-    ```
-  - *bad - abstract ARIA role*
-    ```jsx
-    <div role="range" />
-    ```
-  - *good*
-    ```jsx
-    <div role="button" />
-    ```
-
-- Do not use `accessKey` on elements. `eslint: jsx-a11y/no-access-key`
-  - *bad*
-    ```jsx
-    <div accessKey="h" />
-    ```
-
-  - *good*
-    ```jsx
-    <div />
-    ```
-
-- Avoid using an array index as the key prop, prefer a stable ID. `eslint: react/no-array-index-key`
-  - *bad*
-    ```jsx
-    {todos.map((todo, index) =>
-      <Todo
-        {...todo}
-        key={index}
-      />
-    )}
-   
 
 
 
