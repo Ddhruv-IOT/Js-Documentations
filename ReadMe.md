@@ -15,6 +15,9 @@
   - [Quotes](#quotes)
   - [Spacing](#spacing)
   - [Props](#props)
+  - [Refs](#refs)
+  - [Parentheses](#parentheses)
+  - [Tags](#tags)
   - [Examples](#examples)
     - [MyComponent.js](#mycomponentjs)
   - [ReactJS Development Rules](#reactjs-development-rules)
@@ -338,6 +341,70 @@ import image from '../assets/image.png';
     <div />
     ```
 
+## Refs
+
+- Always use ref callbacks.
+  - *bad*
+    ```jsx
+    <Foo ref="myRef" />
+    ```
+  - *good*
+    ```jsx
+    <Foo ref={(ref) => { this.myRef = ref; }} />
+    ```
+
+## Parentheses
+
+- Wrap JSX tags in parentheses when they span more than one line.
+  
+  - *bad*
+    ```jsx
+    render() {
+      return <MyComponent variant="long body" foo="bar">
+               <MyChild />
+             </MyComponent>;
+    }
+    ```
+  - *good*
+    ```jsx
+    render() {
+      return (
+        <MyComponent variant="long body" foo="bar">
+          <MyChild />
+        </MyComponent>
+      );
+    }
+    ```
+
+## Tags
+
+- Always self-close tags that have no children.
+  
+  - *bad*
+    ```jsx
+    <Foo variant="stuff"></Foo>
+    ```
+  - *good*
+    ```jsx
+    <Foo variant="stuff" />
+    ```
+
+- If your component has multiline properties, close its tag on a new line.
+  
+  - *bad*
+    ```jsx
+    <Foo
+      bar="bar"
+      baz="baz" />
+    ```
+  - *good*
+    ```jsx
+    <Foo
+      bar="bar"
+      baz="baz"
+    />
+    ```
+
 ## Examples
 
 Here are some examples of how to structure and organize your code following the outlined guidelines.
@@ -460,10 +527,6 @@ export default MyComponent;
 
 - Do not use mixins.
   - Why? Mixins introduce implicit dependencies, cause name clashes, and cause snowballing complexity. Most use cases for mixins can be accomplished in better ways via components, higher-order components, or utility modules.
-
-
-
-
 
 
 ## Contributing
