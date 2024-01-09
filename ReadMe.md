@@ -119,7 +119,7 @@ project-root/
   ├──Library imports
   ├──Absolute imports from the project
   ├──Relative imports
-``````
+```
 
 ## Library Imports
 
