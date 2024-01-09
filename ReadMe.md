@@ -21,7 +21,10 @@
   - [Examples](#examples)
     - [MyComponent.js](#mycomponentjs)
   - [ReactJS Development Rules](#reactjs-development-rules)
-  - [Mixins](#mixins)
+  - [Anti-Patterns](#anti-patterns)
+    - [isMounted](#ismounted)
+    - [Using Indexes as Keys](#using-indexes-as-keys)
+    - [Mixins](#mixins)
   - [Contributing](#contributing)
   - [License](#license)
 
@@ -522,11 +525,38 @@ export default MyComponent;
 
 
 
+## Anti-Patterns
 
-## Mixins
+### isMounted
 
-- Do not use mixins.
-  - Why? Mixins introduce implicit dependencies, cause name clashes, and cause snowballing complexity. Most use cases for mixins can be accomplished in better ways via components, higher-order components, or utility modules.
+- **Avoid using isMounted:**
+  - Do not use `isMounted`. `eslint: react/no-is-mounted`
+  - Why? `isMounted` is an anti-pattern, is not available when using ES6 classes, and is on its way to being officially deprecated.
+
+### Using Indexes as Keys
+
+- **Keys should be stable, predictable, and unique:**
+  - **Bad:**
+    ```jsx
+    {todos.map((todo, index) =>
+      <Todo
+        {...todo}
+        key={index}
+      />
+    )}
+    ```
+  - **Good:**
+    ```jsx
+    {todos.map((todo) =>
+      <Todo {...todo}
+        key={todo.id} />
+    )}
+    ```
+    - Assuming `todo.id` is unique to this list and stable, React would be able to reorder elements without needing to reevaluate them as much.
+### Mixins
+
+- **Do not use mixins.**
+  - **Why?** Mixins introduce implicit dependencies, cause name clashes, and cause snowballing complexity. Most use cases for mixins can be accomplished in better ways via components, higher-order components, or utility modules.
 
 
 ## Contributing
