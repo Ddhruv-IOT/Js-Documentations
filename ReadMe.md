@@ -224,7 +224,7 @@ import image from '../assets/image.png';
   
 ## Quotes
 
-- Always use double quotes (`"`) for JSX attributes, but single quotes (`'`) for all other JS. `eslint: jsx-quotes`
+- Always use double quotes (`"`) for JSX attributes, but single quotes (`'`) for all other JS.
   - *bad*
     ```jsx
     <Foo bar='bar' />
@@ -238,7 +238,7 @@ import image from '../assets/image.png';
 
 ## Spacing
 
-- Always include a single space in your self-closing tag. `eslint: no-multi-spaces, react/jsx-tag-spacing`
+- Always include a single space in your self-closing tag.
   - *bad*
     ```jsx
     <Foo/>
