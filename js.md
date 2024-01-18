@@ -19,11 +19,11 @@
       - [A. Actual Types](#a-actual-types)
       - [B. Coerced Types](#b-coerced-types)
       - [Conditional Evaluation](#conditional-evaluation)
-- [Practical Style](#practical-style)
-  - [A Practical Module](#a-practical-module)
-  - [A Practical Constructor](#a-practical-constructor)
-  - [Miscellaneous](#miscellaneous)
-    - [A. Switch Statements (Continued)](#a-switch-statements-continued)
+    - [Practical Style](#practical-style)
+      - [A Practical Module](#a-practical-module)
+      - [A Practical Constructor](#a-practical-constructor)
+    - [Miscellaneous](#miscellaneous)
+      - [A. Switch Statements (Continued)](#a-switch-statements-continued)
       - [Example of an Unfavorable Switch Statement](#example-of-an-unfavorable-switch-statement)
       - [Alternate Approach using an Object to Store "Cases"](#alternate-approach-using-an-object-to-store-cases)
     - [B. Early Returns](#b-early-returns)
@@ -598,9 +598,9 @@ true, false
 "", 0, null, undefined, NaN, void 0
 ```
 
-# Practical Style
+### Practical Style
 
-## A Practical Module
+#### A Practical Module
 
 ```javascript
 // 5.1.1
@@ -639,7 +639,7 @@ true, false
 })( this );
 ```
 
-## A Practical Constructor
+#### A Practical Constructor
 
 ```javascript
 // 5.2.1
@@ -679,9 +679,9 @@ Object.keys(obj).forEach(function (key) {
 
 `thisArg` can be used with `Array.prototype.every`, `Array.prototype.forEach`, `Array.prototype.some`, `Array.prototype.map`, `Array.prototype.filter`.
 
-## Miscellaneous
+### Miscellaneous
 
-### A. Switch Statements (Continued)
+#### A. Switch Statements (Continued)
 
 Using `switch` should be avoided, as modern method tracing will blacklist functions with switch statements. However, there seems to be drastic improvements to the execution of switch statements in the latest releases of Firefox and Chrome ([performance test](http://jsperf.com/switch-vs-object-literal-vs-module)). Notable improvements can be witnessed [here](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments), especially for specific use cases.
 
