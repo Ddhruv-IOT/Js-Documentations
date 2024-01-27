@@ -33,12 +33,12 @@
     - [Comments](#comments)
     - [One Language Code](#one-language-code)
     - [Appendix](#appendix)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Introduction
 
 Welcome to the documentation for our project! This document serves as a style guide and coding standard to ensure code consistency, readability, and maintainability.
-
-
 
 ## Coding Style Guide
 
@@ -315,7 +315,6 @@ Whitespace can ruin diffs and make changesets impossible to read. Incorporate a 
   - `object.prop === undefined`
   - `object.hasOwnProperty( prop )`
   - `"prop" in object`
-
 
 #### B. Coerced Types
 
@@ -839,4 +838,14 @@ Programs should be written in one language, whatever that language may be, as di
 
 ### Appendix
 
-Comma First. Any project that cites this document as its base style guide will not accept comma-first code formatting, unless explicitly specified otherwise by that project's author.
+- Comma First. Any project that cites this document as its base style guide will not accept comma-first code formatting, unless explicitly specified otherwise by that project's author.
+
+- Use Standard for JavaScript style guide, linter, and formatter [Standard-JS](https://github.com/standard/standard)
+
+## Contributing
+
+We welcome contributions! If you have any questions or suggestions, please feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
